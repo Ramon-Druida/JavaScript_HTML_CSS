@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+  
+    <link rel="stylesheet" href="./css1.css">
+
+</head>
+<body>
+        <div class="coteiner">
+
+            <div id="dv1">
+                <label for=""> usuario </label>
+                <input type="text" name="" id="lb1">
+            </div>
+
+            <div id="dv2">
+                <label for="">senha</label>
+                <input type="password" name="" id="lb2">
+            </div>
+
+            <div id="dv3">
+                <input type="button" value="Entrar" onclick="ativa()"  >
+            </div>
+
+           
+        </div>
+        <div class="dv4">
+            <p id="resp">s</p>
+
+        </div>
+
+<script src="./js1.js"></script>
+    </body>
+</html>
