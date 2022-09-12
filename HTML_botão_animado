@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+    <link rel="stylesheet" href="./pg/css1.css">
+</head>
+<body>
+        <header>
+            <section id="sec">
+            <h1>
+                JavaScript_HTML_CSS
+            </h1>
+
+            <p id="p1">
+                Hoje vamos aprender JavaScript, a linguagem de programação que os navegadores de internete como: google,
+                firefox, opera, microsoft edge, ente outros. Mas primeiro vamos entender o HTML, O <strong>body</strong> é
+                o corpo do documento html, dentro das suas tags que são representadas assim : < body > < /body >,
+                são adicionadas outras tags que modificam o texto e estilo do documento, por exemplo:
+            </p>
+            </section>
+        </header>
+        <main>
+                <div id="intro">
+                   
+                    <p class="bd1">
+                        < body>  -> Abrindo a Tag
+                    </p>
+                    <p>
+                            < h1> <h1> Tag de titulo</h1> < /h1> <br> <br>
+
+                            < h2> <h2> Tag de titulo</h2> < /h2>  <br> <br>
+                            
+                            < h3> <h3> Tag de titulo</h3> < /h3> <br>
+
+                    </p>
+
+                    <p class="bd1">
+                        < /body>  -> Fechando a Tag
+                    </p>
+                </div>
+                <button class="btin"  ondblclick="ativa()"> + </button>    
+
+        </main>
+
+        <script>
+            
+            function ativa(){
+                window.location.href = './pg/index1.html';
+            }
+
+        </script>
+</body>
+</html>
