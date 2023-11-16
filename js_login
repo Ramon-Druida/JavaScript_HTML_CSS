@@ -10,7 +10,7 @@ function ativa(){
     var entra1 = user.value;
     var entra2 = senha.value;
 
-    if(entra1 == us && entra2 == senh ){
+    if(entra1 == us && entra2 == senh ){  // essa parte foi considerado a fomra mais fácil para ensino!
        
         window.location.href ='./index1.html';
 
