@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!--
+        ****************************************************************************
+
+        OBSERVAÇÕES DO CRIADOR!
+    
+            Esse jogo tem objetivo de absorver de forma divertida os estudos,
+            troque as perguntas de acordo com que quer aprender, pegue o conhecimento
+            e crie uma pergunta que a resposta seja o objetivo de aprendizado.
+
+
+            Uma versão com imagens será desenvolvida apartir desse modelo, 
+            
+            as alternativas pensadas até o momento são carrocel de imagens e canvas com animação.
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+    <style>
+
+                            body{
+
+                            background-color: black;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            margin-top: 3vh;
+                            font-family: Verdana, Geneva, Tahoma, sans-serif;
+                            }
+                    
+                            #pergunta{
+                            margin-top: 50px;
+                            height: 25vh;
+                            width: 75vw;
+                            background-color: rgba(0, 0, 0, 0.918);
+                            justify-content: center;
+                            align-items: center;
+
+                            }
+                            #quest{
+                            color: aliceblue;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            }
+
+                            #resp{
+                            width: 50vw;
+                            color: rgb(0, 0, 0);
+                            background-color: rgb(233, 255, 198);
+                            align-items: center;
+                            justify-content: center;
+
+
+                            }
+                            #bt{
+                            margin-top: 2%;
+                            padding: 15px;
+
+                            margin-top: 20px;
+                            }
+                            #bt1{
+                            background-color: chartreuse;
+                            width: 100px;
+                            font-size: large;
+                            }
+                            #bt2{
+                            background-color: crimson;
+                            width: 100px;
+                            font-size: large;
+
+                            }
+                            #bt3{
+                            background-color: rgb(210, 220, 20);
+                            width: 100px;
+                            font-size: large;
+                            }
+
+                            body > #container1{
+                            width: 80vw;
+                            height: 60vh;
+                            background-color: rgba(255, 255, 255, 0.823);
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 10%;
+                            }
+
+                            body > #container1> #container2{
+                            width: 50vw;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 10%;
+                            }
+                            #vida{
+                            color: aliceblue;
+                            display:flex ;
+
+                            }
+                            #vida > #vidas{
+                            color: rgb(37, 128, 208);
+                            margin-left: 10px;
+                            }
+
+    @media ( width >= 1200px) {
+           body{
+                font-size: 1vw;
+                background-color: rgb(62, 62, 62);
+            }
+            input{
+                width: 400px;
+                height: 100px;
+                font-size: 2vw;
+            }
+            #bt1, #bt2, #bt3{
+                font-size: 2vw;
+                width: 500px;
+            }
+    }
+    
+
+    </style>
+ 
+</head>
+
+
+
+<body>
+          <div id="container1">
+
+            <span id="pergunta">
+                <h2 id="quest"></h2>
+            </span>
+            <div id="container2">
+            
+                <div id="input">
+                    <input type="text" name="resp" id="resp" autocomplete="off">
+                </div>
+
+
+                <div id="bt">
+    
+                    <button type="button" id="bt1">Conferir</button>
+                    <button type="button" id="bt2">proxima</button>
+                    <button type="button" id="bt3"> dica</button>
+                </div>
+                <span id="dica">_</span>
+    
+            </div>
+
+        </div>
+
+        <div id="vida">
+            <h3>Vidas: </h3> 
+            <h2 id="vidas"></h2> 
+        </div>
+     <script>
+       
+        //*****************Variáveis de controle do jogo*****************************
+            var tentativas = 3;     // Controle das vidas do jogo    
+            var help = 3;           // Jogador ganha 1 vida ao acertar x questoes.
+            var numero = 12;         // quantidade de perguntas e respostas
+            
+
+        //*****************************************************************************
+
+        
+            //objeto que armazena as perguntas =>   "chave":"valor"
+            var perguntas = {
+                "pergunta1":"Nome do criador desse jogo?",
+                "pergunta2":"Veículo com capacidade para dois passageiros?",
+                "pergunta3":"Local fisico com maquinas somente de jogos pagos por tempo?",
+                "pergunta4":"Quantas leteas existem no alfabeto brasileiro?",
+                "pergunta5":"Jogo de baralho com numero par de pessoas e 3 cartas por participante?",
+                "pergunta6":"Instrumento de percução que possui o mesmo nome de um objeto que armazena energia?",
+                "pergunta7":"Proficional da saúde que cuida e faz tratamento de infermos?",
+                "pergunta8":"Nome do conjunto de vértebras proximas do cránio com numeração de 1 a 7?",
+                "pergunta9":"Número de costelas que um humano padrão possui?",
+                "pergunta10":"Forma cientifica de descrever a particula de água?",
+                "pergunta11":"Quantos ossos tem um recem nascido?",
+                "pergunta12":"Quantos dias tem em um ano bissexto?"
+            };
+            
+            //objeto que armazena as respostas =>   "chave":"valor"
+            var respostas1 = {
+                "pergunta1":"ramon",
+                "pergunta2":"moto",
+                "pergunta3":"fliperama",
+                "pergunta4":"26",
+                "pergunta5":"truco",
+                "pergunta6":"bateria",
+                "pergunta7":"enfermeiro",
+                "pergunta8":"cervical",
+                "pergunta9":"24",
+                "pergunta10":"h2o",
+                "pergunta11":"270",
+                "pergunta12":"366"
+            };
+                        //objeto que armazena as respostas =>   "chave":"valor"
+                        var respostas2 = {
+                "pergunta1":"Ramon",
+                "pergunta2":"Moto",
+                "pergunta3":"Fliperama",
+                "pergunta4":"26",
+                "pergunta5":"Truco",
+                "pergunta6":"Bateria",
+                "pergunta7":"Enfermeiro",
+                "pergunta8":"Cervical",
+                "pergunta9":"24",
+                "pergunta10":"H2o",
+                "pergunta11":"270",
+                "pergunta12":"366"
+            };
+
+            var dicas ={
+                "pergunta1":"****n",
+                "pergunta2":"**t*",
+                "pergunta3":"*l*******",
+                "pergunta4":"**",
+                "pergunta5":"****o",
+                "pergunta6":"*a*****",
+                "pergunta7":"*********o",
+                "pergunta8":"**r*****",
+                "pergunta9":"**",
+                "pergunta10":"***",
+                "pergunta11":"***",
+                "pergunta12":"***"
+            };
+
+
+       //------------------CONFIGURAÇÂO-------------------------------------------
+            const span = document.querySelector("#quest") //Texto das perguntas
+            const input = document.querySelector("#resp"); //campo de entrada
+            const bt1 = document.querySelector("#bt1");     // botão confere
+            const bt2 = document.querySelector("#bt2");     // botão desisto
+            const bt3 = document.querySelector("#bt3");     // botão dica
+            const dica =document.querySelector("#dica");
+            const bt = document.querySelector("#bt") // container de botões
+            const vidas = document.querySelector("#vidas"); // variavel de vidas
+           
+            var pontos = 1;         //Nível do jogo / pontuação do jogador
+            var bonus = 0;          // aumenta 1 vida quando acerta x numero de questões
+            var jogo = false;       // controle para o inicio do jogo
+
+            
+
+//-----------------------------------------------------------------------------------------------------
+       
+        function FimJogo(){
+            if(tentativas == 0){
+                dica.innerHTML=("");
+                span.innerHTML = ("FIM DE JOGO, para jogar novamente atualize a pagina.")
+                input.remove();
+                bt.remove();
+
+            }
+        }
+
+
+            //Função nivel 1, referencia para nivel 2 com tempo (settimeout)
+        function nivel(){
+            // Limpa conteudo da input
+            input.addEventListener("click",()=>{ input.value = "" });
+            
+                   
+            //Primeira execução
+            if(jogo == false){
+            vidas.innerHTML =(tentativas);
+            span.innerHTML =( perguntas["pergunta"+pontos]);  
+            jogo = true;
+            }
+
+
+            bt1.addEventListener("click", ()=>{
+
+                    if(respostas1["pergunta"+pontos] == input.value || respostas2["pergunta"+pontos] == input.value){
+                        console.log("ponto ganho");
+                        bonus +=1;
+                        pontos +=1;
+                        input.value = "";
+                        vidas.innerHTML =(tentativas);
+                        span.innerHTML =( perguntas["pergunta"+pontos]);
+                        dica.innerHTML=("_");
+                    }else{
+                        console.log("ponto perdido");
+                       
+                        bonus = 0;
+                        tentativas --;
+                        pontos ++;
+                        input.value = "";
+                        vidas.innerHTML =(tentativas);
+                        span.innerHTML =( perguntas["pergunta"+pontos]);
+                        dica.innerHTML=("_");
+                    }
+
+                if(bonus == help){
+                    console.log("Entrou no bonus")
+                    bonus = 0; 
+                    tentativas +=1;
+                    vidas.innerHTML =(tentativas);
+                }
+                
+                FimJogo();
+            });
+
+            bt2.addEventListener("click", ()=>{
+                
+                    tentativas -=1;
+                    bonus = 0;
+                    pontos++;
+                    vidas.innerHTML =(tentativas);
+                    span.innerHTML =( perguntas["pergunta"+pontos]);
+                    dica.innerHTML=("_");
+                    FimJogo();
+                });
+            bt3.addEventListener("click",()=>{
+                dica.innerHTML=(dicas["pergunta"+pontos]);
+                console.log(dicas["pergunta"+pontos])
+                tentativas -=1;
+                vidas.innerHTML =(tentativas);
+            });
+
+    }//NIVEL()
+    nivel();
+ </script>
+
+</body>
+</html>
